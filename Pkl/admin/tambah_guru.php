@@ -32,6 +32,10 @@
                 <input type="text" class="form-control" id="telp" name="telp" required>
             </div>
             <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="text" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="mb-3">
                 <label for="tahun" class="form-label">Tahun</label>
                 <input type="text" class="form-control" id="tahun" name="tahun" required>
             </div>

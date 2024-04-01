@@ -58,11 +58,11 @@
             <a class="nav-link" href="pkl.php"><i class="bi bi-briefcase-fill"></i> PKL</a>
           </li>           
           <li class="nav-item">
-            <a class="nav-link" href="industri.php"><i class="bi bi-briefcase-fill"></i> Jurusan</a>
+            <a class="nav-link" href="industri.php"><i class="bi bi-briefcase-fill"></i> Industri</a>
           </li>           
         </ul>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
-        <a href="../index.php" class="btn btn-danger rounded">Log Out</a>    
+        <a href="../index.php" class="btn btn-outline-danger rounded">Log Out</a>    
         </ul>
       </div>
     </div>

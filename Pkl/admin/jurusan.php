@@ -46,8 +46,7 @@
                         <td><?= $row['id_jurusan']; ?></td>
                         <td><?= $row['nama_jurusan']; ?></td>
                         <td>
-                            <a href="edit_jurusan.php" class="btn btn-warning">Edit</a>
-                            <a href="hapus_jurusan.php" class="btn btn-danger">Hapus</a>
+                        <a href="edit_jurusan.php?id_jurusan=<?php echo $row['id_jurusan']; ?>" class="btn btn-warning">Edit</a>
                         </td>
                     </tr>
                 <?php

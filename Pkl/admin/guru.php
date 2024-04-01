@@ -31,6 +31,7 @@
                     <th class="text-center">Nama Guru</th>
                     <th class="text-center">Alamat</th>
                     <th class="text-center">Telepon</th>
+                    <th class="text-center">Password</th>
                     <th class="text-center">Tahun</th>
                     <th class="text-center">ID Jurusan</th>
                     <th class="text-center">Jabatan</th>
@@ -48,6 +49,7 @@
                             <td><?php echo $d['nama']; ?></td>
                             <td><?php echo $d['alamat']; ?></td>
                             <td><?php echo $d['telp']; ?></td>
+                            <td><?php echo $d['password']; ?></td>
                             <td><?php echo $d['tahun']; ?></td>
                             <td><?php echo $d['id_jurusan']; ?></td>
                             <td><?php echo $d['jabatan']; ?></td>
