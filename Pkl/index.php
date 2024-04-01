@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Form</title>
     <!-- Bootstrap CSS -->
-    <link href="../Pkl/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="../Pkl/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
     <style>
         body {
             background-color: grey;
@@ -30,6 +30,7 @@
             background-color: #ffffff;
         }
     </style>
+    
 </head>
 <body>
     <div class="login-form">
@@ -45,10 +46,18 @@
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Login</button>
-            <!-- Pesan Kesalahan -->
-            <?php if(isset($_GET['pesan']) && $_GET['pesan'] == 'gagal'): ?>
-                <div class="alert alert-danger mt-3" role="alert">Username atau password salah!</div>
-            <?php endif; ?>
+            <br><br>
+            <?php
+                if(isset($_GET['pesan'])){
+                    if ($_GET['pesan']=="gagal"){
+                        echo "<div class='alert alert-danger'>Login gagal! username dan password salah</div>";
+                    } elseif ($_GET['pesan']=="logout"){
+                        echo "<div class='alert alert-warning'>Anda berhasil logout</div>";
+                    } elseif ($_GET['pesan']=="belum_login"){
+                        echo "<div class='alert alert-success'>Anda harus login dulu sebelum masuk ke admin</div>";
+                    }
+                }
+            ?>
         </form>
     </div>
 
