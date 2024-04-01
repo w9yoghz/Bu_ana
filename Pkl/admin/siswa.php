@@ -22,8 +22,24 @@
             <h4>Daftar Siswa</h4>
         </div>
         <div class="panel-body">
-            <a href="tambah_siswa.php" class="btn btn-primary">Tambah Siswa</a>
-            <br><br><br>
+        <div class=" mt-2">
+            <div class="row">
+                <div class="col-md-2">
+                <a href="tambah_siswa.php" class="btn btn-primary">Tambah Siswa</a>
+                </div>
+                <div class="col-md-8">
+                
+                    <form action="siswa.php" method="get">
+                    <div class="input-group">
+                        <input type="text" name="cari" class="form-control ml-3" placeholder="Cari berdasarkan nama..." aria-label="Search" aria-describedby="search-icon" value="<?php if(isset($_GET['cari'])){ echo $_GET['cari'];} ?>">
+                        <button class="btn btn-primary" type="submit" id="search-icon"><i class="bi bi-search"></i></button>
+                    </div>
+                    </form>         
+                
+                </div>
+            </div>
+            </div>
+            <br><br>
             <table class="table table-bordered table-striped">
                 <tr>
                     <th class="text-center">No</th>
@@ -41,10 +57,20 @@
                     <th class="text-center" width="10%">Opsi</th>
                 </tr>
                 <?php
-                    $data = mysqli_query($koneksi, "SELECT * FROM siswa ORDER BY nisn ASC");
+                    if (isset($_GET['cari'])){
+                        $pencarian = $_GET['cari'];
+                        $query = "SELECT * FROM siswa WHERE nama_siswa like '%".$pencarian."%'";
+                    } else {
+                        $query = "SELECT * from siswa  ";
+                    }
+                    $data = mysqli_query($koneksi, $query);
+                    if(mysqli_num_rows($data) == 0) {
+                        echo '<tr><td colspan="11" class="text-center">Data tidak ditemukan</td></tr>';
+                    } else {
                     $no = 1;
                     while ($d = mysqli_fetch_array($data)) {
                         ?>
+                        
                             <tr>
                                 <td><?php echo $no++ ?></td>
                                 <td><?php echo $d['nisn']; ?></td>
@@ -65,6 +91,7 @@
                             </tr>
                         <?php
                     }
+                }
                 ?>
             </table>
         </div>

@@ -22,7 +22,22 @@
             <h4>Daftar PKL</h4>
         </div>
         <div class="panel-body">
+        <div class=" mt-2">
+    <div class="row">
+        <div class="col-md-2">
             <a href="tambah_pkl.php" class="btn btn-primary">Tambah PKL</a>
+        </div>
+        <div class="col-md-8">
+            <form action="pkl.php" method="get">
+                <div class="input-group">
+                    <input type="text" name="cari" class="form-control ml-3" placeholder="Cari berdasarkan nama PKL..." aria-label="Search" aria-describedby="search-icon" value="<?php if(isset($_GET['cari'])){ echo $_GET['cari'];} ?>">
+                    <button class="btn btn-primary" type="submit" id="search-icon"><i class="bi bi-search"></i></button>
+                </div>
+            </form>         
+        </div>
+    </div>
+</div>
+
             <br><br><br>
             <table class="table table-bordered table-striped">
                 <tr>
@@ -35,7 +50,17 @@
                     <th class="text-center" width="10%">Opsi</th>
                 </tr>
                 <?php
-                    $data = mysqli_query($koneksi, "SELECT * FROM pkl ORDER BY id_pkl ASC");
+                if (isset($_GET['cari'])){
+                    $pencarian = $_GET['cari'];
+                    $query = "SELECT * FROM pkl WHERE nama_pkl like '%".$pencarian."%'";
+                } else {
+                    $query = "SELECT * FROM pkl ORDER BY id_pkl ASC";
+                }
+                
+                    $data = mysqli_query($koneksi, $query);
+                    if(mysqli_num_rows($data) == 0) {
+                        echo '<tr><td colspan="11" class="text-center">Data tidak ditemukan</td></tr>';
+                    } else {
                     $no = 1;
                     while ($d = mysqli_fetch_array($data)) {
                 ?>
@@ -53,6 +78,7 @@
                 </tr>
                 <?php
                     }
+                }
                 ?>
             </table>
         </div>

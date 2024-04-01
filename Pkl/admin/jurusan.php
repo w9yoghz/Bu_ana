@@ -13,9 +13,24 @@
 </head>
 <body>
 
-<div class="container">
+<div class="panel mt-4 m-2">
   <h1 class="mt-5 fw-bold mb-4">Daftar Jurusan</h1>
-  <a href="tambah_jurusan.php" class="btn btn-primary">Tambah Jurusan</a>
+  <div class=" mt-2">
+    <div class="row">
+        <div class="col-md-2">
+            <a href="tambah_jurusan.php" class="btn btn-primary">Tambah Jurusan</a>
+        </div>
+        <div class="col-md-8">
+            <form action="jurusan.php" method="get">
+                <div class="input-group">
+                    <input type="text" name="cari" class="form-control ml-3" placeholder="Cari berdasarkan nama jurusan..." aria-label="Search" aria-describedby="search-icon" value="<?php if(isset($_GET['cari'])){ echo $_GET['cari'];} ?>">
+                    <button class="btn btn-primary" type="submit" id="search-icon"><i class="bi bi-search"></i></button>
+                </div>
+            </form>         
+        </div>
+    </div>
+</div>
+
   <br><br>
   <table class="table table-bordered">
     <thead>
@@ -28,16 +43,21 @@
     </thead>
     <tbody>
       <?php
-        // Koneksi ke database
-        
-        
-        $query = "SELECT * FROM jurusan";
+        if (isset($_GET['cari'])){
+          $pencarian = $_GET['cari'];
+          $query = "SELECT * FROM jurusan WHERE nama_jurusan like '%".$pencarian."%'";
+      } else {
+          $query = "SELECT * from jurusan  ";
+      }
         $result = mysqli_query($koneksi, $query);
 
         if (!$result) {
             die("Query Error: " . mysqli_errno($koneksi) . " - " . mysqli_error($koneksi));
         }
 
+        if(mysqli_num_rows($result) == 0) {
+          echo '<tr><td colspan="11" class="text-center">Data tidak ditemukan</td></tr>';
+      } else {
             $no = 1;
                     while ($row = mysqli_fetch_assoc($result)) {
                 ?>
@@ -51,6 +71,7 @@
                     </tr>
                 <?php
                     }
+      }
                 ?>
       
     </tbody>
